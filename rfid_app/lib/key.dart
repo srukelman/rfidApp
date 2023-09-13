@@ -1,17 +1,26 @@
 class Key{
-  String _name;
-  String _rfid_code;
+  String _name = "";
+  String _rfid_code = "";
   Key(this._name, this._rfid_code);
-  void setName(name){
-    this._name = name;
+  Key.fromString(String fromString){
+    final splitted = fromString.split(':');
+    _name = splitted[0];
+    _rfid_code = splitted[1];
   }
-  void set_rfid_code(rfid_code){
-    this._rfid_code = rfid_code;
+  void setName(name){
+    _name = name;
+  }
+  void set_rfid_code(rfidCode){
+    _rfid_code = rfidCode;
   }
   String getName(){
-    return this._name;
+    return _name;
   }
   String getRFIDCode(){
-    return this._rfid_code;
+    return _rfid_code;
+  }
+  @override
+  String toString(){
+    return "$_name:$_rfid_code";
   }
 }
