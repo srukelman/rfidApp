@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'newKeyForm.dart';
+
 class AddKey extends StatefulWidget{
   const AddKey({super.key});
   @override
@@ -13,6 +15,10 @@ class AddKeyState extends State<AddKey>{
         leading: BackButton(),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text('Add Key')
+      ),
+      body: Center(
+          child:
+              NewKeyForm()
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: (){
