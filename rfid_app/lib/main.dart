@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rfid_app/addKey.dart';
 import 'package:rfid_app/keyDropdown.dart';
 
 void main() {
@@ -90,10 +91,15 @@ class _MyHomePageState extends State<MyHomePage> {
             ]
           )
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: (){
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const AddKey())
+          );
+        },
+        tooltip: 'add key',
+        icon: const Icon(Icons.add),
+        label: Text('Add Key')
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
