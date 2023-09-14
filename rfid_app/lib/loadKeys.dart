@@ -14,12 +14,19 @@ Future<File> get _localFile async {
   final path = await _localPath;
   return File('$path/keys.txt');
 }
-void readKeys(){
-
+void readKeys() async{
+  File readFile = await _localFile;
+  final contents = await readFile.readAsString();
+  print(contents);
 }
 
-void writeKeys(){
-
+void writeKeys() async{
+  File writeFile = await _localFile;
+  String s = "";
+  _keys.forEach((key){
+    s += key.toString() + ";";
+  });
+  writeFile.writeAsString("$s");
 }
 
 List<Key> getKeys(){

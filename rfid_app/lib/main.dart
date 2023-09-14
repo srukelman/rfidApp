@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:rfid_app/addKey.dart';
 import 'package:rfid_app/keyDropdown.dart';
 
+import 'loadKeys.dart';
+
 void main(){
+  WidgetsFlutterBinding.ensureInitialized();
+  readKeys();
   runApp(const MyApp());
 }
 
