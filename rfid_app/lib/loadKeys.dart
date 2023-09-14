@@ -17,7 +17,12 @@ Future<File> get _localFile async {
 void readKeys() async{
   File readFile = await _localFile;
   final contents = await readFile.readAsString();
-  print(contents);
+  final splitted = contents.split(";");
+  splitted.forEach((pair){
+    if(pair.contains(":")){
+      _keys.add(Key.fromString(pair));
+    }
+  });
 }
 
 void writeKeys() async{

@@ -3,8 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:rfid_app/addKey.dart';
 import 'package:rfid_app/keyDropdown.dart';
-
-import 'loadKeys.dart';
+import 'package:rfid_app/loadKeys.dart';
 
 void main(){
   WidgetsFlutterBinding.ensureInitialized();
