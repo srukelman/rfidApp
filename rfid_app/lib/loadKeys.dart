@@ -34,6 +34,11 @@ void writeKeys() async{
   writeFile.writeAsString("$s");
 }
 
+void addKey(String name, String rfid_code){
+  _keys.add(Key(name, rfid_code));
+}
+
+
 List<Key> getKeys(){
   return _keys;
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:rfid_app/loadKeys.dart';
+import 'package:rfid_app/key.dart' as rfid_key;
 class NewKeyForm extends StatefulWidget{
   const NewKeyForm({super.key});
 
@@ -11,6 +12,7 @@ class NewKeyForm extends StatefulWidget{
 
 class NewKeyFormState extends State<NewKeyForm>{
   final _formKey = GlobalKey<FormState>();
+  final formController = TextEditingController();
   @override
   Widget build(BuildContext context){
     return Form(
@@ -20,9 +22,16 @@ class NewKeyFormState extends State<NewKeyForm>{
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextFormField(
+            controller: formController,
             validator: (value){
               if(value == null || value.isEmpty){
                 return 'Please Enter A Name';
+              }
+              List<rfid_key.Key> keys = getKeys();
+              for(rfid_key.Key key in keys) {
+                if (key.getName() == value) {
+                  return 'Key With Already Exists; Please Enter a Unique Name';
+                }
               }
               return null;
             }
@@ -38,6 +47,8 @@ class NewKeyFormState extends State<NewKeyForm>{
               ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text('Processing Data')),
               );
+              addKey(formController.text, "code");
+              writeKeys();
             }
           },
           child: Text('Submit'),
@@ -46,5 +57,10 @@ class NewKeyFormState extends State<NewKeyForm>{
         ]
       )
     );
+  }
+  @override
+  void dispose(){
+    formController.dispose();
+    super.dispose();
   }
 }
