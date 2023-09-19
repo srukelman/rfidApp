@@ -1,36 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:rfid_app/keyDropdown.dart';
 import 'package:rfid_app/addKey.dart';
+import 'package:rfid_app/key.dart' as rfid_key;
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title, required this.keys});
+  const MyHomePage({super.key, required this.title});
 
   final String title;
-  final List<Key> keys;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  Map data = {};
   List<DropdownMenuItem> ? items = [
     new DropdownMenuItem(child: Text('my room')),
     new DropdownMenuItem(child: Text('his room'))
   ];
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
+    data = ModalRoute.of(context)?.settings.arguments as Map;
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -42,7 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // TRY THIS: Try changing the color here to a specific color (to
           // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
           // change color while the other colors stay the same.
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          backgroundColor: Colors.purple[500],
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
           title: Text(widget.title),
@@ -51,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
                 children: <Widget>[
                   Text('Select a key: '),
-                  KeyDropdown(this.keys),
+                  KeyDropdown(keys: data['keys']),
                 ]
             )
         ),
@@ -59,6 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.end,
             children:[
               FloatingActionButton.extended(
+                heroTag: 'add btn',
                   onPressed: (){
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => const AddKey())
@@ -72,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 10,
               ),
               FloatingActionButton.extended(
+                heroTag: 'delete btn',
                   onPressed: (){
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => const AddKey())

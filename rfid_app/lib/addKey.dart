@@ -13,7 +13,7 @@ class AddKeyState extends State<AddKey>{
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Colors.purple[500],
         title: Text('Add Key')
       ),
       body: Center(

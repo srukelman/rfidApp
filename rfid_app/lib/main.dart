@@ -13,7 +13,7 @@ void main() => runApp(
     initialRoute: '/',
     routes: {
       '/':(context) => loadingPage(),
-      '/home':(context) => MyHomePage(title: 'RFID APP', keys: [],),
+      '/home':(context) => MyHomePage(title: 'RFID APP'),
       '/addkey':(context) => NewKeyForm(),
 
     },

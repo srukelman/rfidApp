@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:rfid_app/loadKeys.dart' as load_keys;
 import 'package:rfid_app/key.dart' as rfid_key;
 class KeyDropdown extends StatefulWidget{
-  const KeyDropdown({super.key});
+  const KeyDropdown({super.key, required this.keys});
+
+  final List<rfid_key.Key> keys;
   @override
   State<KeyDropdown> createState() => KeyDropdownState();
 }
@@ -14,8 +16,7 @@ class KeyDropdownState extends State<KeyDropdown>{
   @override
   Widget build(BuildContext context) {
     list = <String>['Select Key'];
-    List<rfid_key.Key> keylist = load_keys.getKeys();
-    keylist.forEach((element) {
+    widget.keys.forEach((element) {
       list.add(element.getName());
     });
     return DropdownMenu<String>(

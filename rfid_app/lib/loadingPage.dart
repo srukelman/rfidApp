@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:rfid_app/loadKeys.dart';
+import 'package:rfid_app/key.dart' as rfid_key;
 class loadingPage extends StatefulWidget {
   const loadingPage({super.key});
 
@@ -10,10 +11,10 @@ class loadingPage extends StatefulWidget {
 
 class _loadingPageState extends State<loadingPage> {
   void setupKeys() async{
-    await readKeys();
+    List<rfid_key.Key> keys = await readKeys();
     Navigator.pushReplacementNamed(context, '/home', arguments: {
       'title': 'RFID',
-      'keys': getKeys()
+      'keys': keys,
     });
   }
   @override initState(){
