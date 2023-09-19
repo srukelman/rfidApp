@@ -40,6 +40,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: Center(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text('Select a key: '),
                   KeyDropdown(keys: data['keys']),
@@ -66,9 +68,10 @@ class _MyHomePageState extends State<MyHomePage> {
               FloatingActionButton.extended(
                 heroTag: 'delete btn',
                   onPressed: (){
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const AddKey())
-                    );
+                    Navigator.pushReplacementNamed(context, '/delete', arguments: {
+                      'title': 'RFID',
+                      'keys': data['keys'],
+                    });
                   },
                   tooltip: 'delete key',
                   icon: const Icon(Icons.delete),
