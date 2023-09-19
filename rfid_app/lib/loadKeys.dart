@@ -14,7 +14,7 @@ Future<File> get _localFile async {
   final path = await _localPath;
   return File('$path/keys.txt');
 }
-void readKeys() async{
+Future<void> readKeys() async{
   File readFile = await _localFile;
   final contents = await readFile.readAsString();
   final splitted = contents.split(";");

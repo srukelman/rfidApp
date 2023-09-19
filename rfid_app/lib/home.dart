@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:rfid_app/keyDropdown.dart';
 import 'package:rfid_app/addKey.dart';
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({super.key, required this.title, required this.keys});
 
   final String title;
+  final List<Key> keys;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -50,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
                 children: <Widget>[
                   Text('Select a key: '),
-                  KeyDropdown()
+                  KeyDropdown(this.keys),
                 ]
             )
         ),
