@@ -8,28 +8,27 @@ class KeyDropdown extends StatefulWidget{
   @override
   State<KeyDropdown> createState() => KeyDropdownState();
 }
-List<String> list = <String>['Select Key'];
+List<rfid_key.Key> list = <rfid_key.Key>[rfid_key.Key('Select Key', 'null')];
 class KeyDropdownState extends State<KeyDropdown>{
 
-  String dropdownValue = list.first;
+  rfid_key.Key dropdownValue = list.first;
 
   @override
   Widget build(BuildContext context) {
-    list = <String>['Select Key'];
-    widget.keys.forEach((element) {
-      list.add(element.getName());
-    });
-    return DropdownMenu<String>(
-      initialSelection: list.first,
-      onSelected: (String? value) {
-        // This is called when the user selects an item.
-        setState(() {
-          dropdownValue = value!;
-        });
-      },
-      dropdownMenuEntries: list.map<DropdownMenuEntry<String>>((String value) {
-        return DropdownMenuEntry<String>(value: value, label: value);
-      }).toList(),
+    list = <rfid_key.Key>[rfid_key.Key('Select Key', 'null')];
+    return DropdownButton<rfid_key.Key>(
+        value: dropdownValue,
+        items: list.map<DropdownMenuItem<rfid_key.Key>>((rfid_key.Key _key) {
+          return DropdownMenuItem<rfid_key.Key>(
+            value: _key,
+            child: Text(_key.getName())
+          );
+        }).toList(),
+        onChanged: (rfid_key.Key? value){
+          setState(() {
+            this.dropdownValue = value!;
+          });
+        },
     );
   }
 }

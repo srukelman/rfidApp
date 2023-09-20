@@ -42,8 +42,16 @@ void addKey(String name, String rfid_code){
   _keys.add(Key(name, rfid_code));
 }
 
+List<rfid_key.Key> dropKey(String name){
+  for(var i = 0; i < _keys.length; i++){
+    if(name == _keys[i].getName()){
+      _keys.remove(_keys[i]);
+    }
+  }
+  return _keys;
+}
 
-List<Key> getKeys(){
+List<rfid_key.Key> getKeys(){
   return _keys;
 }
 

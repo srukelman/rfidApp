@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rfid_app/keyDropdown.dart';
+import 'package:rfid_app/loadKeys.dart';
+import 'package:rfid_app/key.dart' as rfid_key;
 class DeleteKeyPage extends StatefulWidget {
   const DeleteKeyPage({super.key});
 
@@ -12,6 +14,7 @@ class _DeleteKeyPageState extends State<DeleteKeyPage> {
   @override
   Widget build(BuildContext context) {
     data = ModalRoute.of(context)?.settings.arguments as Map;
+    KeyDropdown dropdown = KeyDropdown(keys: data['keys']);
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(),
@@ -24,11 +27,12 @@ class _DeleteKeyPageState extends State<DeleteKeyPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text('Select Key to Delete: '),
-            KeyDropdown(keys: data['keys']),
+            dropdown,
             Padding(
               padding: EdgeInsets.symmetric(vertical:16),
               child: ElevatedButton(
-                  onPressed: (){},
+                  onPressed: (){
+                  },
                   child:Text('Delete')
               )
             )
